@@ -1814,7 +1814,8 @@ class DataGrid
                     . 'style="width:5px; border-collapse: collapse; '
                     . '-moz-user-select: none; -khtml-user-select: none; ' . $this->globalStyle;
 
-               if (end(array_keys($this->_currentColumns)) != $index)
+                $_keys_current_columns = array_keys($this->_currentColumns);
+               if (end($_keys_current_columns) != $index)
                {
                    //Uncomment for gray resize bars
                    $formatString .= 'border-right:1px solid gray;';
@@ -1830,7 +1831,7 @@ class DataGrid
                     $formatString,
                     $md5InstanceName, $index,
                     $md5InstanceName,
-                    $md5InstanceName, end(array_keys($this->_currentColumns)),
+                    $md5InstanceName, end($_keys_current_columns),
                     $this->_tableWidth,
                     urlencode($this->_instanceName),
                     $_SESSION['CATS']->getCookie(),
@@ -1906,7 +1907,7 @@ class DataGrid
         echo ('</table>' . "\n");
 
         /* If the table is smaller than the maximum width, JS will extend out the last cell so the table takes up all of its allocated space. */
-        echo ('<script type="text/javascript">setTableWidth("table'.$md5InstanceName.'", '.$this->_totalColumnWidths.', document.getElementById(\'cell'.$md5InstanceName.end(array_keys($this->_currentColumns)).'\'), document.getElementById(\'cell'.$md5InstanceName.end(array_keys($this->_currentColumns)).'div\'), ' . ($this->_tableWidth) . ');</script>' . "\n");
+        echo ('<script type="text/javascript">setTableWidth("table'.$md5InstanceName.'", '.$this->_totalColumnWidths.', document.getElementById(\'cell'.$md5InstanceName.end($_keys_current_columns).'\'), document.getElementById(\'cell'.$md5InstanceName.end($_keys_current_columns).'div\'), ' . ($this->_tableWidth) . ');</script>' . "\n");
 
         /* Close overflowdiv */
         if (!$noOverflow)
